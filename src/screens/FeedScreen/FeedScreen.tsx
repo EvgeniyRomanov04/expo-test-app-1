@@ -4,23 +4,27 @@ import { usePosts } from "@/features/posts/model/usePosts";
 import { Post } from "@/features/posts/ui/Post";
 import { PostSkeleton } from "@/features/posts/ui/PostSkeleton";
 import { observer } from "mobx-react-lite";
-import { FlatList, ListRenderItem, StyleSheet } from "react-native";
+import {
+  FlatList,
+  ListRenderItem,
+  RefreshControl,
+  StyleSheet,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const FeedScreen = observer(() => {
   const posts = postsStore.posts;
   const loading = postsStore.loading;
   const { top } = useSafeAreaInsets();
-
-  const renderItem: ListRenderItem<PostType> = ({ item }) => (
-    <Post post={item} />
-  );
-
-  usePosts();
+  const { refetch, isRefetching } = usePosts();
 
   if (loading) {
     return <PostSkeleton />;
   }
+
+  const renderItem: ListRenderItem<PostType> = ({ item }) => (
+    <Post post={item} />
+  );
 
   return (
     <FlatList
@@ -29,6 +33,9 @@ export const FeedScreen = observer(() => {
       keyExtractor={keyExtractor}
       style={[styles.container, { paddingTop: 16 + top }]}
       contentContainerStyle={styles.content}
+      refreshControl={
+        <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+      }
     />
   );
 });

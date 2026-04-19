@@ -1,20 +1,19 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { postCardStyles } from "./PostCard/styles";
 import Skeleton from "react-native-reanimated-skeleton";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ICustomViewStyle } from "react-native-reanimated-skeleton/lib/typescript/constants";
 
 export const PostSkeleton = () => {
+  const { top } = useSafeAreaInsets();
   return (
-    <SafeAreaView>
-      <Skeleton
-        isLoading
-        animationDirection="horizontalRight"
-        animationType="shiver"
-        containerStyle={styles.stub}
-        layout={[PostSkeletonLayout, PostSkeletonLayout]}
-      />
-    </SafeAreaView>
+    <Skeleton
+      isLoading
+      animationDirection="horizontalRight"
+      animationType="shiver"
+      containerStyle={{ paddingTop: 16 + top }}
+      layout={[PostSkeletonLayout, PostSkeletonLayout]}
+    />
   );
 };
 
