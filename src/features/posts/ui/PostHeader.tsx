@@ -1,28 +1,28 @@
 import { fontStyles } from "@/shared/theme/typography";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { Post } from "../api/posts.types";
+import { postCardStyles } from "./PostCard/styles";
 
-export const PostHeader = () => {
+interface Props {
+  author: Post["author"];
+}
+export const PostHeader = ({ author }: Props) => {
   return (
-    <View style={styles.container}>
-      <Image height={40} width={40} style={styles.icon} />
+    <View style={postCardStyles.header}>
+      <Image
+        height={40}
+        width={40}
+        style={postCardStyles.headerIcon}
+        source={{ uri: author?.avatarUrl }}
+      />
       <Text style={[styles.title, fontStyles.manrope_700bold]}>
-        Иван Иванович
+        {author?.displayName}
       </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  icon: {
-    borderRadius: 20,
-    backgroundColor: "gray",
-  },
   title: {
     marginLeft: 12,
     fontSize: 15,

@@ -1,0 +1,93 @@
+import { StyleSheet, View } from "react-native";
+import { postCardStyles } from "./PostCard/styles";
+import Skeleton from "react-native-reanimated-skeleton";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ICustomViewStyle } from "react-native-reanimated-skeleton/lib/typescript/constants";
+
+export const PostSkeleton = () => {
+  return (
+    <SafeAreaView>
+      <Skeleton
+        isLoading
+        animationDirection="horizontalRight"
+        animationType="shiver"
+        containerStyle={styles.stub}
+        layout={[PostSkeletonLayout, PostSkeletonLayout]}
+      />
+    </SafeAreaView>
+  );
+};
+
+const defaultStyles = StyleSheet.create({
+  radius: {
+    borderRadius: 16,
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#FFFFFF",
+    marginTop: 16,
+  },
+  headerIcon: {
+    height: 40,
+    width: 40,
+    ...postCardStyles.headerIcon,
+    backgroundColor: undefined,
+  },
+  headerTitle: {
+    width: 120,
+    height: 20,
+    marginLeft: 12,
+    ...defaultStyles.radius,
+  },
+  imageContainer: {
+    aspectRatio: 1,
+    width: "100%",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  descTitle: {
+    width: 164,
+    height: 26,
+    borderRadius: 22,
+    marginBottom: 8,
+  },
+  descText: {
+    width: 361,
+    height: 20,
+    borderRadius: 22,
+    marginBottom: 16,
+  },
+  actionsContainer: { flexDirection: "row", columnGap: 8 },
+  actionButton: {
+    width: 64,
+    height: 36,
+    borderRadius: 22,
+  },
+  stub: {},
+});
+
+const PostSkeletonLayout: ICustomViewStyle = {
+  ...styles.container,
+  children: [
+    {
+      ...postCardStyles.header,
+      children: [styles.headerIcon, styles.headerTitle],
+    },
+    { ...styles.imageContainer, children: [styles.image] },
+    {
+      ...postCardStyles.footerContainer,
+      children: [
+        styles.descTitle,
+        styles.descText,
+        {
+          ...styles.actionsContainer,
+          children: [styles.actionButton, styles.actionButton],
+        },
+      ],
+    },
+  ],
+};

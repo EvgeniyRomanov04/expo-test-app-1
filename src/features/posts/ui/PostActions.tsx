@@ -1,12 +1,14 @@
 import { StyleSheet, View } from "react-native";
 import { PostLikeActionButton } from "./PostActionButton/PostLikeActionButton";
 import { PostCommentActionButton } from "./PostActionButton/PostCommentActionButton";
+import { PostActionsData } from "./post.types";
 
-export const PostActions = () => {
+interface Props extends PostActionsData {}
+export const PostActions = ({ liked, likeCount, commentCount }: Props) => {
   return (
     <View style={styles.container}>
-      <PostLikeActionButton value="100" />
-      <PostCommentActionButton value="10000" />
+      <PostLikeActionButton active={liked} value={String(likeCount)} />
+      <PostCommentActionButton value={String(commentCount)} />
     </View>
   );
 };

@@ -1,14 +1,24 @@
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { PostHeader } from "./PostHeader";
 import { PostMedia } from "./PostMedia";
 import { PostFooter } from "./PostFooter";
+import { Post as PostType } from "../api/posts.types";
 
-export const Post = () => {
+interface Props {
+  post: PostType;
+}
+export const Post = ({ post }: Props) => {
   return (
     <View style={styles.container}>
-      <PostHeader />
-      <PostMedia />
-      <PostFooter />
+      <PostHeader author={post.author} />
+      <PostMedia image={post.coverUrl!} />
+      <PostFooter
+        title={post.preview!}
+        text={post.title!}
+        liked={post.isLiked!}
+        likeCount={post.likesCount || 0}
+        commentCount={post.commentsCount || 0}
+      />
     </View>
   );
 };

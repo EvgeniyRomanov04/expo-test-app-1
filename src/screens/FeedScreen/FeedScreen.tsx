@@ -1,24 +1,37 @@
+import { Posts, Post as PostType } from "@/features/posts/api/posts.types";
+import { postsStore } from "@/features/posts/model/postsStore";
+import { usePosts } from "@/features/posts/model/usePosts";
 import { Post } from "@/features/posts/ui/Post";
-import { FlatList, StyleSheet } from "react-native";
+import { PostSkeleton } from "@/features/posts/ui/PostSkeleton";
+import { observer } from "mobx-react-lite";
+import { FlatList, ListRenderItem, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export const FeedScreen = () => {
+export const FeedScreen = observer(() => {
+  const posts = postsStore.posts;
+  const loading = postsStore.loading;
   const { top } = useSafeAreaInsets();
 
-  const renderItem = () => {
-    return <Post />;
-  };
+  const renderItem: ListRenderItem<PostType> = ({ item }) => (
+    <Post post={item} />
+  );
+
+  usePosts();
+
+  if (loading) {
+    return <PostSkeleton />;
+  }
 
   return (
     <FlatList
-      data={[0, 0, 0, 0, 0, 0, 0]}
+      data={posts}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       style={[styles.container, { paddingTop: 16 + top }]}
       contentContainerStyle={styles.content}
     />
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -29,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const keyExtractor = (item: number) => item.toString();
+const keyExtractor = (item: NonNullable<Posts>[number]) => item.id!;
