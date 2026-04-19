@@ -14,11 +14,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const FeedScreen = observer(() => {
   const posts = postsStore.posts;
-  const loading = postsStore.loading;
-  const { top } = useSafeAreaInsets();
-  const { refetch, isRefetching } = usePosts();
+  const { top, bottom } = useSafeAreaInsets();
+  const { refetch, isFetching, isFetched, isRefetching, fetchNextPage } =
+    usePosts();
 
-  if (loading) {
+  if (isFetching && (!isFetched || isRefetching)) {
     return <PostSkeleton />;
   }
 
@@ -26,13 +26,20 @@ export const FeedScreen = observer(() => {
     <Post post={item} />
   );
 
+  const onEndReached = () => {
+    if (!postsStore.hasMore) return;
+    fetchNextPage();
+  };
+
   return (
     <FlatList
       data={posts}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       style={[styles.container, { paddingTop: 16 + top }]}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={[styles.content, { paddingBottom: 16 + bottom }]}
+      onEndReachedThreshold={0.5}
+      onEndReached={onEndReached}
       refreshControl={
         <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
       }

@@ -4,33 +4,35 @@ import { PostsResponse, Posts } from "../api/posts.types";
 
 class PostsStore {
   posts: Posts = [];
-  loading = false;
   error: string | null = null;
-  data: PostsResponse | undefined;
+  nextCursor: string | null | undefined;
+  hasMore: boolean | undefined;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  async fetchPosts() {
+  async fetchPosts(nextCursor: string | null | undefined) {
     runInAction(() => {
-      this.loading = true;
       this.error = null;
     });
 
     try {
-      const data = await postsApi.get();
+      const isPagination = nextCursor && nextCursor?.length > 0;
+      const data = (await postsApi.get(isPagination ? nextCursor : undefined))
+        .data;
       runInAction(() => {
-        this.posts = data.data?.posts;
+        this.posts =
+          isPagination && data?.posts
+            ? [...this.posts!, ...data.posts]
+            : data?.posts;
+        this.hasMore = data?.hasMore;
+        this.nextCursor = data?.nextCursor;
       });
       return data;
     } catch (e) {
       runInAction(() => {
         this.error = "Failed to load posts";
-      });
-    } finally {
-      runInAction(() => {
-        this.loading = false;
       });
     }
   }
