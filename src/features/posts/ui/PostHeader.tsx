@@ -1,7 +1,8 @@
-import { fontStyles } from "@/shared/theme/typography";
+import { fontStyles, typography } from "@/shared/theme/typography";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Post } from "../api/posts.types";
 import { postCardStyles } from "./PostCard/styles";
+import { layout } from "@/shared/design-tokens/layout";
 
 interface Props {
   author: Post["author"];
@@ -15,7 +16,7 @@ export const PostHeader = ({ author }: Props) => {
         style={postCardStyles.headerIcon}
         source={{ uri: author?.avatarUrl }}
       />
-      <Text style={[styles.title, fontStyles.manrope_700bold]}>
+      <Text style={[typography.title, styles.title]}>
         {author?.displayName}
       </Text>
     </View>
@@ -24,7 +25,7 @@ export const PostHeader = ({ author }: Props) => {
 
 const styles = StyleSheet.create({
   title: {
-    marginLeft: 12,
+    marginLeft: layout.header.marginLeft,
     fontSize: 15,
     lineHeight: 20,
   },

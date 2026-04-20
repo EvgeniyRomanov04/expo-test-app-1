@@ -1,5 +1,5 @@
 import * as Manrope from "@expo-google-fonts/manrope";
-import { StyleSheet, TextStyle } from "react-native";
+import { StyleProp, StyleSheet, TextStyle } from "react-native";
 
 type FontKeys = Extract<keyof typeof Manrope, `Manrope_${string}`>;
 
@@ -20,3 +20,29 @@ export const fontStyles = StyleSheet.create(
     )
   )
 ) as ManropeFontMap;
+
+export const typography = {
+  title: [
+    {
+      fontSize: 18,
+      lineHeight: 26,
+    },
+    fontStyles.manrope_700bold,
+  ],
+
+  body: [
+    {
+      fontSize: 15,
+      lineHeight: 20,
+    },
+    fontStyles.manrope_500medium,
+  ],
+
+  caption: [
+    {
+      fontSize: 13,
+      lineHeight: 18,
+    },
+    fontStyles.manrope_700bold,
+  ],
+} satisfies Record<string, StyleProp<TextStyle>>;

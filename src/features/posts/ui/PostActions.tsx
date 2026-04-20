@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { PostLikeActionButton } from "./PostActionButton/PostLikeActionButton";
 import { PostCommentActionButton } from "./PostActionButton/PostCommentActionButton";
 import { PostActionsData } from "./types";
+import { layout } from "@/shared/design-tokens/layout";
 
 interface Props extends PostActionsData {}
 export const PostActions = ({ liked, likeCount, commentCount }: Props) => {
@@ -15,7 +16,7 @@ export const PostActions = ({ liked, likeCount, commentCount }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 16,
+    marginTop: layout.footer.paddingTop,
     flexDirection: "row",
     columnGap: 8,
   },

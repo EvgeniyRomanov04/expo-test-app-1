@@ -1,9 +1,10 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import { PostActionButtonProps } from "./types";
-import { fontStyles } from "@/shared/theme/typography";
+import { fontStyles, typography } from "@/shared/theme/typography";
 import * as PostIcons from "./icons";
 import { colors } from "@/shared/design-tokens/colors";
 import { layout } from "@/shared/design-tokens/layout";
+import { radius } from "@/shared/design-tokens/radius";
 
 export const PostActionButton = ({
   value,
@@ -23,9 +24,7 @@ export const PostActionButton = ({
       {...props}
     >
       {Icon && <Icon {...iconProps} />}
-      <Text style={[styles.text, fontStyles.manrope_700bold, textStyle]}>
-        {value}
-      </Text>
+      <Text style={[styles.text, typography.caption, textStyle]}>{value}</Text>
     </Pressable>
   );
 };
@@ -38,13 +37,11 @@ const styles = StyleSheet.create({
     columnGap: layout.button.gap,
 
     backgroundColor: colors.background.surface,
-    borderRadius: 18,
+    borderRadius: radius.xl - 2,
     flexDirection: "row",
   },
 
   text: {
-    fontSize: 13,
-    lineHeight: 18,
     textAlignVertical: "center",
     color: colors.text.primary,
   },

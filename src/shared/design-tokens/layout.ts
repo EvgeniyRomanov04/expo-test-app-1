@@ -6,6 +6,10 @@ export const layout = {
     paddingBottom: spacing.l,
   },
 
+  header: {
+    marginLeft: 12,
+  },
+
   card: {
     paddingHorizontal: spacing.l,
     paddingTop: spacing.m,
@@ -26,6 +30,7 @@ export const layout = {
 
   footer: {
     paddingTop: 16,
+    paddingHorizontal: 16,
     paddingBottom: 12,
   },
 };

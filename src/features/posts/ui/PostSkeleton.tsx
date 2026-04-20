@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ICustomViewStyle } from "react-native-reanimated-skeleton/lib/typescript/constants";
 import { colors } from "@/shared/design-tokens/colors";
 import { layout } from "@/shared/design-tokens/layout";
+import { radius } from "@/shared/design-tokens/radius";
 
 export const PostSkeleton = () => {
   const { top } = useSafeAreaInsets();
@@ -21,16 +22,10 @@ export const PostSkeleton = () => {
   );
 };
 
-const defaultStyles = StyleSheet.create({
-  radius: {
-    borderRadius: 16,
-  },
-});
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.background.card,
-    marginTop: 16,
+    marginTop: layout.screen.paddingTop,
   },
   headerIcon: {
     height: 40,
@@ -41,8 +36,8 @@ const styles = StyleSheet.create({
   headerTitle: {
     width: 120,
     height: 20,
-    marginLeft: 12,
-    ...defaultStyles.radius,
+    marginLeft: layout.header.marginLeft,
+    borderRadius: radius.l,
   },
   imageContainer: {
     aspectRatio: 1,
@@ -55,20 +50,20 @@ const styles = StyleSheet.create({
   descTitle: {
     width: 164,
     height: 26,
-    borderRadius: 22,
+    borderRadius: radius.xxl,
     marginBottom: 8,
   },
   descText: {
-    width: 361,
+    width: "100%",
     height: 20,
-    borderRadius: 22,
+    borderRadius: radius.xxl,
     marginBottom: 16,
   },
   actionsContainer: { flexDirection: "row", columnGap: 8 },
   actionButton: {
     width: 64,
     height: 36,
-    borderRadius: 22,
+    borderRadius: radius.xxl,
   },
   stub: {},
 });
