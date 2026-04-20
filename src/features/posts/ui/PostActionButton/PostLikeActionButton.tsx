@@ -71,6 +71,6 @@ const activeStyles = StyleSheet.create({
 
 const styles = StyleSheet.create({
   pressed: {
-    backgroundColor: colors.background.surface,
+    backgroundColor: colors.background.pressed,
   },
 });
