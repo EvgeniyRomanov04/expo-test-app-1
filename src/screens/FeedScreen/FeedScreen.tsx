@@ -36,7 +36,7 @@ export const FeedScreen = observer(() => {
       data={posts}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      style={[styles.container, { paddingTop: 16 + top }]}
+      style={{ paddingTop: 16 + top }}
       contentContainerStyle={[styles.content, { paddingBottom: 16 + bottom }]}
       onEndReachedThreshold={0.5}
       onEndReached={onEndReached}
@@ -48,9 +48,6 @@ export const FeedScreen = observer(() => {
 });
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#F5F8FD",
-  },
   content: {
     rowGap: 16,
   },

@@ -1,3 +1,4 @@
+import { colors } from "@/shared/design-tokens/colors";
 import { StyleSheet } from "react-native";
 
 export const postCardStyles = StyleSheet.create({
@@ -10,7 +11,7 @@ export const postCardStyles = StyleSheet.create({
   },
   headerIcon: {
     borderRadius: 20,
-    backgroundColor: "#F5F8FD",
+    backgroundColor: colors.background.app,
   },
   footerContainer: {
     paddingTop: 16,

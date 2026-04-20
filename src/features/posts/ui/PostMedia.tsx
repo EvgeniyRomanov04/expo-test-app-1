@@ -1,3 +1,4 @@
+import { colors } from "@/shared/design-tokens/colors";
 import { Image, StyleSheet } from "react-native";
 
 interface Props {
@@ -11,6 +12,6 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     aspectRatio: 1,
-    backgroundColor: "#F5F8FD",
+    backgroundColor: colors.background.app,
   },
 });

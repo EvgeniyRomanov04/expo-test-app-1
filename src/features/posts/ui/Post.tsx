@@ -3,6 +3,7 @@ import { PostHeader } from "./PostHeader";
 import { PostMedia } from "./PostMedia";
 import { PostFooter } from "./PostFooter";
 import { Post as PostType } from "../api/posts.types";
+import { colors } from "@/shared/design-tokens/colors";
 
 interface Props {
   post: PostType;
@@ -26,6 +27,6 @@ export const Post = ({ post }: Props) => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.background.card,
   },
 });

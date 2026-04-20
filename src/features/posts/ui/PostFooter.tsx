@@ -1,7 +1,7 @@
 import { fontStyles } from "@/shared/theme/typography";
 import { StyleSheet, Text, View } from "react-native";
 import { PostActions } from "./PostActions";
-import { PostActionsData } from "./post.types";
+import { PostActionsData } from "./types";
 import { postCardStyles } from "./PostCard/styles";
 
 interface Props extends PostActionsData {

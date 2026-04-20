@@ -1,8 +1,9 @@
 import Svg, { ClipPath, Defs, G, Path, Rect } from "react-native-svg";
 import { PostActionButtonIconProps } from "./types";
+import { colors } from "@/shared/design-tokens/colors";
 
 export const PostCommentIcon = ({
-  mainColor = "#57626F",
+  mainColor = colors.icon.primary,
   ...props
 }: PostActionButtonIconProps) => (
   <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>

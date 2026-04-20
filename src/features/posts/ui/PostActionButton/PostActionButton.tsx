@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import { PostActionButtonProps } from "./types";
 import { fontStyles } from "@/shared/theme/typography";
 import * as PostIcons from "./icons";
+import { colors } from "@/shared/design-tokens/colors";
 
 export const PostActionButton = ({
   value,
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingLeft: 6,
     paddingRight: 12,
-    backgroundColor: "#EFF2F7",
+    backgroundColor: colors.background.surface,
     borderRadius: 18,
 
     flexDirection: "row",
@@ -44,6 +45,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
     textAlignVertical: "center",
-    color: "#57626F",
+    color: colors.text.primary,
   },
 });

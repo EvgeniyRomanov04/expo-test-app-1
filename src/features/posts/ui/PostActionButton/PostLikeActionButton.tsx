@@ -3,6 +3,7 @@ import { PostActionButton } from "./PostActionButton";
 import { PressableStateCallbackType, StyleSheet } from "react-native";
 import { PostActionButtonProps } from "./types";
 import { disabledStyles } from "./styles";
+import { colors } from "@/shared/design-tokens/colors";
 
 export const PostLikeActionButton = ({
   disabled,
@@ -35,7 +36,13 @@ export const PostLikeActionButton = ({
       ]}
       disabled={disabled}
       iconProps={
-        disabled ? { mainColor: active ? "#FFEAF1" : "#B6BEC8" } : undefined
+        disabled
+          ? {
+              mainColor: active
+                ? colors.action.like.activeSubtle
+                : colors.icon.disabled,
+            }
+          : undefined
       }
     />
   );
@@ -43,27 +50,27 @@ export const PostLikeActionButton = ({
 
 const disableActiveStyles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFBAD2",
+    backgroundColor: colors.action.like.activeBackground,
   },
   text: {
-    color: "#FFEAF1",
+    color: colors.action.like.activeSubtle,
   },
 });
 
 const activeStyles = StyleSheet.create({
   default: {
-    backgroundColor: "#FF2B75",
+    backgroundColor: colors.action.like.primary,
   },
   pressed: {
-    backgroundColor: "#EA276B",
+    backgroundColor: colors.action.like.pressed,
   },
   defaultText: {
-    color: "#FFEAF1",
+    color: colors.action.like.activeSubtle,
   },
 });
 
 const styles = StyleSheet.create({
   pressed: {
-    backgroundColor: "#DDDDDD",
+    backgroundColor: colors.background.surface,
   },
 });

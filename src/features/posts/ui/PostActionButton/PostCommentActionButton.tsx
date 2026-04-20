@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { PostActionButton } from "./PostActionButton";
 import { PostActionButtonProps } from "./types";
 import { disabledStyles } from "./styles";
+import { colors } from "@/shared/design-tokens/colors";
 
 export const PostCommentActionButton = ({
   value = "0",
@@ -16,13 +17,13 @@ export const PostCommentActionButton = ({
         disabled && disabledStyles.container,
       ]}
       textStyle={disabled && disabledStyles.text}
-      iconProps={disabled ? { mainColor: "#B6BEC8" } : undefined}
+      iconProps={disabled ? { mainColor: colors.icon.disabled } : undefined}
     />
   );
 };
 
 const styles = StyleSheet.create({
   pressed: {
-    backgroundColor: "#DDDDDD",
+    backgroundColor: colors.background.pressed,
   },
 });

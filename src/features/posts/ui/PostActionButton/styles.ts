@@ -1,10 +1,11 @@
+import { colors } from "@/shared/design-tokens/colors";
 import { StyleSheet } from "react-native";
 
 export const disabledStyles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.background.card,
   },
   text: {
-    color: "#B6BEC8",
+    color: colors.text.disabled,
   },
 });

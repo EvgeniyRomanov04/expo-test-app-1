@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { PostLikeActionButton } from "./PostActionButton/PostLikeActionButton";
 import { PostCommentActionButton } from "./PostActionButton/PostCommentActionButton";
-import { PostActionsData } from "./post.types";
+import { PostActionsData } from "./types";
 
 interface Props extends PostActionsData {}
 export const PostActions = ({ liked, likeCount, commentCount }: Props) => {

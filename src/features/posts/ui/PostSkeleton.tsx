@@ -3,6 +3,7 @@ import { postCardStyles } from "./PostCard/styles";
 import Skeleton from "react-native-reanimated-skeleton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ICustomViewStyle } from "react-native-reanimated-skeleton/lib/typescript/constants";
+import { colors } from "@/shared/design-tokens/colors";
 
 export const PostSkeleton = () => {
   const { top } = useSafeAreaInsets();
@@ -25,7 +26,7 @@ const defaultStyles = StyleSheet.create({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.background.card,
     marginTop: 16,
   },
   headerIcon: {
