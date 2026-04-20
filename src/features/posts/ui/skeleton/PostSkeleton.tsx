@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { postCardStyles } from "./PostCard/styles";
 import Skeleton from "react-native-reanimated-skeleton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ICustomViewStyle } from "react-native-reanimated-skeleton/lib/typescript/constants";
 import { colors } from "@/shared/design-tokens/colors";
 import { layout } from "@/shared/design-tokens/layout";
 import { radius } from "@/shared/design-tokens/radius";
+import { postCardStyles } from "../PostCard/styles";
 
 export const PostSkeleton = () => {
   const { top } = useSafeAreaInsets();

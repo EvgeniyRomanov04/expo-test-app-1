@@ -14,11 +14,12 @@ import { AnimatedLoadIcon } from "../loader/AnimatedLoadIcon";
 
 interface Props {
   text: string;
+  onPress?: () => void;
   loading?: boolean;
   disable?: boolean;
   style?: StyleProp<ViewStyle>;
 }
-export const Button = ({ text, loading, disable, style }: Props) => {
+export const Button = ({ text, onPress, loading, disable, style }: Props) => {
   const [pressed, setPressed] = useState(false);
   return (
     <Pressable
@@ -28,6 +29,7 @@ export const Button = ({ text, loading, disable, style }: Props) => {
         disable && styles.disabled,
         style,
       ]}
+      onPress={onPress}
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
     >

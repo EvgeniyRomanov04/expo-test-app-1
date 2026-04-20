@@ -1,8 +1,9 @@
 import { Posts, Post as PostType } from "@/features/posts/api/posts.types";
 import { postsStore } from "@/features/posts/model/postsStore";
 import { usePosts } from "@/features/posts/model/usePosts";
+import { PostsEmptyState } from "@/features/posts/ui/empty/PostsEmptyState";
 import { Post } from "@/features/posts/ui/Post";
-import { PostSkeleton } from "@/features/posts/ui/PostSkeleton";
+import { PostSkeleton } from "@/features/posts/ui/skeleton/PostSkeleton";
 import { layout } from "@/shared/design-tokens/layout";
 import { observer } from "mobx-react-lite";
 import {
@@ -21,6 +22,10 @@ export const FeedScreen = observer(() => {
 
   if (isFetching && (!isFetched || isRefetching)) {
     return <PostSkeleton />;
+  }
+
+  if (!isFetching && isFetched && posts?.length === 0) {
+    return <PostsEmptyState />;
   }
 
   const renderItem: ListRenderItem<PostType> = ({ item }) => (

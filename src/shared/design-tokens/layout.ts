@@ -4,6 +4,7 @@ export const layout = {
   screen: {
     paddingTop: spacing.l,
     paddingBottom: spacing.l,
+    paddingHorizontal: spacing.l,
   },
 
   header: {
@@ -29,8 +30,14 @@ export const layout = {
   },
 
   footer: {
-    paddingTop: 16,
-    paddingHorizontal: 16,
-    paddingBottom: 12,
+    paddingTop: spacing.l,
+    paddingHorizontal: spacing.l,
+    paddingBottom: spacing.m,
+  },
+
+  empty: {
+    image: {
+      size: 112,
+    },
   },
 };
