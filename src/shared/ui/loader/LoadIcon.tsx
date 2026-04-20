@@ -1,0 +1,17 @@
+import { baseColors } from "@/shared/design-tokens/colors";
+import Svg, { Path, PathProps } from "react-native-svg";
+
+export const LoadIcon = (props: PathProps) => {
+  return (
+    <Svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+      <Path
+        d="M13 3.25C11.0716 3.25 9.18657 3.82183 7.58319 4.89317C5.97982 5.96452 4.73013 7.48726 3.99218 9.26884C3.25422 11.0504 3.06114 13.0108 3.43735 14.9021C3.81355 16.7934 4.74215 18.5307 6.10571 19.8943C7.46928 21.2579 9.20656 22.1865 11.0979 22.5627C12.9892 22.9389 14.9496 22.7458 16.7312 22.0078C18.5127 21.2699 20.0355 20.0202 21.1068 18.4168C22.1782 16.8134 22.75 14.9284 22.75 13"
+        stroke={baseColors.white}
+        stroke-width="1.95"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        {...props}
+      />
+    </Svg>
+  );
+};

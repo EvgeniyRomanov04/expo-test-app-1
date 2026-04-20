@@ -12,13 +12,14 @@ export const Post = ({ post }: Props) => {
   return (
     <View style={styles.container}>
       <PostHeader author={post.author} />
-      <PostMedia image={post.coverUrl!} />
+      <PostMedia image={post.coverUrl!} tier={post.tier} />
       <PostFooter
         title={post.preview!}
         text={post.title!}
         liked={post.isLiked!}
         likeCount={post.likesCount || 0}
         commentCount={post.commentsCount || 0}
+        tier={post.tier}
       />
     </View>
   );

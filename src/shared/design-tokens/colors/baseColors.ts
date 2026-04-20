@@ -11,4 +11,10 @@ export const baseColors = {
   pink200: "#FFBAD2",
   pink500: "#FF2B75",
   pink600: "#EA276B",
+
+  purple50: "#D5C9FF",
+  purple75: "#C0A1EB",
+  purple100: "#DFD0F5",
+  purple400: "#6115CD",
+  purple500: "#4E11A4",
 };

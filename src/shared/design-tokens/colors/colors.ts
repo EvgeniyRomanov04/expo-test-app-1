@@ -32,4 +32,29 @@ export const colors = {
       pressed: baseColors.pink600,
     },
   },
+
+  skeleton: {
+    background: {
+      surface: "rgba(238, 239, 241, 0.8)",
+    },
+  },
+
+  button: {
+    background: {
+      primary: baseColors.purple400,
+      hover: baseColors.purple500,
+      disabled: baseColors.purple50,
+    },
+    text: {
+      primary: baseColors.white,
+      hover: baseColors.purple100,
+      loading: baseColors.purple75,
+      disabled: baseColors.white,
+    },
+  },
+  overlay: {
+    text: {
+      primary: baseColors.white,
+    },
+  },
 };
