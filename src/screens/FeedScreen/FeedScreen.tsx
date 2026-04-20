@@ -3,6 +3,7 @@ import { postsStore } from "@/features/posts/model/postsStore";
 import { usePosts } from "@/features/posts/model/usePosts";
 import { Post } from "@/features/posts/ui/Post";
 import { PostSkeleton } from "@/features/posts/ui/PostSkeleton";
+import { layout } from "@/shared/design-tokens/layout";
 import { observer } from "mobx-react-lite";
 import {
   FlatList,
@@ -36,8 +37,11 @@ export const FeedScreen = observer(() => {
       data={posts}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      style={{ paddingTop: 16 + top }}
-      contentContainerStyle={[styles.content, { paddingBottom: 16 + bottom }]}
+      style={{ paddingTop: layout.screen.paddingTop + top }}
+      contentContainerStyle={[
+        styles.content,
+        { paddingBottom: layout.screen.paddingBottom + bottom },
+      ]}
       onEndReachedThreshold={0.5}
       onEndReached={onEndReached}
       refreshControl={
@@ -49,7 +53,7 @@ export const FeedScreen = observer(() => {
 
 const styles = StyleSheet.create({
   content: {
-    rowGap: 16,
+    rowGap: layout.list.gap,
   },
 });
 

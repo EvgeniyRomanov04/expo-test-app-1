@@ -3,6 +3,7 @@ import { PostActionButtonProps } from "./types";
 import { fontStyles } from "@/shared/theme/typography";
 import * as PostIcons from "./icons";
 import { colors } from "@/shared/design-tokens/colors";
+import { layout } from "@/shared/design-tokens/layout";
 
 export const PostActionButton = ({
   value,
@@ -31,14 +32,14 @@ export const PostActionButton = ({
 
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: 6,
-    paddingLeft: 6,
-    paddingRight: 12,
+    paddingVertical: layout.button.paddingVertical,
+    paddingLeft: layout.button.paddingLeft,
+    paddingRight: layout.button.paddingRight,
+    columnGap: layout.button.gap,
+
     backgroundColor: colors.background.surface,
     borderRadius: 18,
-
     flexDirection: "row",
-    columnGap: 4,
   },
 
   text: {

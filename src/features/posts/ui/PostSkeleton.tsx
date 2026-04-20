@@ -4,6 +4,7 @@ import Skeleton from "react-native-reanimated-skeleton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ICustomViewStyle } from "react-native-reanimated-skeleton/lib/typescript/constants";
 import { colors } from "@/shared/design-tokens/colors";
+import { layout } from "@/shared/design-tokens/layout";
 
 export const PostSkeleton = () => {
   const { top } = useSafeAreaInsets();
@@ -12,7 +13,9 @@ export const PostSkeleton = () => {
       isLoading
       animationDirection="horizontalRight"
       animationType="shiver"
-      containerStyle={{ paddingTop: 16 + top }}
+      containerStyle={{
+        paddingTop: layout.screen.paddingTop + top,
+      }}
       layout={[PostSkeletonLayout, PostSkeletonLayout]}
     />
   );
