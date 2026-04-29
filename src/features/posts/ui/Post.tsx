@@ -14,6 +14,7 @@ export const Post = ({ post }: Props) => {
       <PostHeader author={post.author} />
       <PostMedia image={post.coverUrl!} tier={post.tier} />
       <PostFooter
+        id={post.id!}
         title={post.preview!}
         text={post.title!}
         liked={post.isLiked!}

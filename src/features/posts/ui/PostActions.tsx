@@ -4,12 +4,14 @@ import { PostCommentActionButton } from "./PostActionButton/PostCommentActionBut
 import { PostActionsData } from "./types";
 import { layout } from "@/shared/design-tokens/layout";
 
-interface Props extends PostActionsData {}
-export const PostActions = ({ liked, likeCount, commentCount }: Props) => {
+interface Props extends PostActionsData {
+  id: string;
+}
+export const PostActions = ({ id, liked, likeCount, commentCount }: Props) => {
   return (
     <View style={styles.container}>
       <PostLikeActionButton active={liked} value={String(likeCount)} />
-      <PostCommentActionButton value={String(commentCount)} />
+      <PostCommentActionButton id={id} value={String(commentCount)} />
     </View>
   );
 };

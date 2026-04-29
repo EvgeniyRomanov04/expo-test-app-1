@@ -10,11 +10,18 @@ import { spacing } from "@/shared/design-tokens/spacing";
 import { colors } from "@/shared/design-tokens/colors";
 
 interface Props extends PostActionsData {
+  id: string;
   title: string;
   text: string;
   tier: Post["tier"];
 }
-export const PostFooter = ({ text, title, tier, ...actionsData }: Props) => {
+export const PostFooter = ({
+  id,
+  text,
+  title,
+  tier,
+  ...actionsData
+}: Props) => {
   const isPaid = tier === "paid";
   return (
     <View style={postCardStyles.footerContainer}>
@@ -27,7 +34,7 @@ export const PostFooter = ({ text, title, tier, ...actionsData }: Props) => {
         <Text style={typography.title}>{text}</Text>
         <Text style={typography.body}>{title}</Text>
       </Skeleton>
-      {!isPaid && <PostActions {...actionsData} />}
+      {!isPaid && <PostActions id={id} {...actionsData} />}
     </View>
   );
 };
