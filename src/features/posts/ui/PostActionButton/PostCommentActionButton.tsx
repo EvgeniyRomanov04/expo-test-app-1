@@ -26,6 +26,13 @@ export const PostCommentActionButton = ({
       textStyle={disabled && disabledStyles.text}
       iconProps={disabled ? { mainColor: colors.icon.disabled } : undefined}
       onPress={() => {
+        const state = navigation.getState();
+        const lastRoute = state.routes[state.routes.length - 1];
+        const postDetailOpened = lastRoute.name === "PostDetail";
+        if (postDetailOpened) {
+          navigation.setParams({ ...lastRoute, focus: true });
+          return;
+        }
         navigation.navigate("PostDetail", target);
       }}
     />

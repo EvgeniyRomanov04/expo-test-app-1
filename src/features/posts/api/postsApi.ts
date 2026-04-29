@@ -1,5 +1,10 @@
 import { apiClient } from "@/shared/api/apiClient";
-import { PostsPequestParam, PostsResponse } from "./posts.types";
+import {
+  PostDetailResponse,
+  PostsPequestParam,
+  PostsResponse,
+} from "./posts.types";
+import { AxiosResponse } from "axios";
 
 export const postsApi = {
   get: async (
@@ -9,5 +14,14 @@ export const postsApi = {
     const params: PostsPequestParam["query"] = { cursor, tier };
     const { data } = await apiClient.get("/posts", { params });
     return data;
+  },
+  getPost: async (
+    id: string
+  ): Promise<NonNullable<PostDetailResponse["data"]>["post"]> => {
+    const { data } = await apiClient.get<
+      any,
+      AxiosResponse<PostDetailResponse>
+    >(`/posts/${id}`);
+    return data.data?.post;
   },
 };

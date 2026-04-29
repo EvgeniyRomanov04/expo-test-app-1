@@ -12,6 +12,7 @@ export const colors = {
     primary: baseColors.gray700,
     secondary: baseColors.gray400,
     disabled: baseColors.gray400,
+    tertiary: baseColors.gray75,
   },
 
   icon: {

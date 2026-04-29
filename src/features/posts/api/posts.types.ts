@@ -10,3 +10,6 @@ export type PostsPequestParam = NonNullable<
 export type Posts = NonNullable<PostsResponse["data"]>["posts"];
 
 export type Post = NonNullable<Posts>[number];
+
+export type PostDetailResponse =
+  paths["/posts/{id}"]["get"]["responses"]["200"]["content"]["application/json"];

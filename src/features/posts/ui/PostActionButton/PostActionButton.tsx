@@ -1,6 +1,12 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import React from "react";
+import {
+  GestureResponderEvent,
+  Pressable,
+  StyleSheet,
+  Text,
+} from "react-native";
 import { PostActionButtonProps } from "./types";
-import { fontStyles, typography } from "@/shared/theme/typography";
+import { typography } from "@/shared/theme/typography";
 import * as PostIcons from "./icons";
 import { colors } from "@/shared/design-tokens/colors";
 import { layout } from "@/shared/design-tokens/layout";
@@ -12,18 +18,28 @@ export const PostActionButton = ({
   iconProps,
   style,
   textStyle,
+  onPress,
   ...props
 }: PostActionButtonProps) => {
-  const Icon = icon ? PostIcons[icon] : null;
+  const iconIsElement = React.isValidElement(icon);
+  const Icon =
+    typeof icon === "string" ? (icon ? PostIcons[icon] : null) : undefined;
+
+  const press = (event: GestureResponderEvent) => {
+    onPress?.(event);
+  };
+
   return (
     <Pressable
       style={(pressedState) => [
         styles.button,
         typeof style === "function" ? style(pressedState) : style,
       ]}
+      onPress={press}
       {...props}
     >
       {Icon && <Icon {...iconProps} />}
+      {iconIsElement && icon}
       <Text style={[styles.text, typography.caption, textStyle]}>{value}</Text>
     </Pressable>
   );

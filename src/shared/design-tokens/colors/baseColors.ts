@@ -2,6 +2,7 @@ export const baseColors = {
   white: "#FFFFFF",
 
   gray50: "#F5F8FD",
+  gray75: "#68727D",
   gray100: "#EFF2F7",
   gray200: "#DDDDDD",
   gray400: "#B6BEC8",
