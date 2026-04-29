@@ -1,16 +1,12 @@
 import React from "react";
-import {
-  GestureResponderEvent,
-  Pressable,
-  StyleSheet,
-  Text,
-} from "react-native";
+import { GestureResponderEvent, Pressable, StyleSheet } from "react-native";
 import { PostActionButtonProps } from "./types";
 import { typography } from "@/shared/theme/typography";
 import * as PostIcons from "./icons";
 import { colors } from "@/shared/design-tokens/colors";
 import { layout } from "@/shared/design-tokens/layout";
 import { radius } from "@/shared/design-tokens/radius";
+import AnimatedNumber from "react-native-animated-numbers";
 
 export const PostActionButton = ({
   value,
@@ -40,7 +36,12 @@ export const PostActionButton = ({
     >
       {Icon && <Icon {...iconProps} />}
       {iconIsElement && icon}
-      <Text style={[styles.text, typography.caption, textStyle]}>{value}</Text>
+      <AnimatedNumber
+        includeComma
+        animateToNumber={Number(value)}
+        containerStyle={styles.textContainer}
+        fontStyle={[styles.text, typography.caption, textStyle]}
+      />
     </Pressable>
   );
 };
@@ -56,10 +57,11 @@ const styles = StyleSheet.create({
     borderRadius: radius.xl - 2,
     flexDirection: "row",
   },
-
+  textContainer: {
+    alignSelf: "center",
+  },
   text: {
     textAlignVertical: "center",
-    alignSelf: "center",
     color: colors.text.primary,
   },
 });
