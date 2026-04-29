@@ -6,6 +6,7 @@ export const baseColors = {
   gray200: "#DDDDDD",
   gray400: "#B6BEC8",
   gray700: "#57626F",
+  gray800: "#E8ECEF",
 
   pink50: "#FFEAF1",
   pink200: "#FFBAD2",

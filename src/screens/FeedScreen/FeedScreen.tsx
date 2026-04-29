@@ -1,8 +1,9 @@
 import { Posts, Post as PostType } from "@/features/posts/api/posts.types";
-import { postsStore } from "@/features/posts/model/postsStore";
+import postsStore from "@/features/posts/model/postsStore";
 import { usePosts } from "@/features/posts/model/usePosts";
 import { PostsEmptyState } from "@/features/posts/ui/empty/PostsEmptyState";
 import { Post } from "@/features/posts/ui/Post";
+import { PostTabs } from "@/features/posts/ui/PostTabs";
 import { PostSkeleton } from "@/features/posts/ui/skeleton/PostSkeleton";
 import { layout } from "@/shared/design-tokens/layout";
 import { observer } from "mobx-react-lite";
@@ -11,6 +12,7 @@ import {
   ListRenderItem,
   RefreshControl,
   StyleSheet,
+  View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -38,21 +40,24 @@ export const FeedScreen = observer(() => {
   };
 
   return (
-    <FlatList
-      data={posts}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      style={{ paddingTop: layout.screen.paddingTop + top }}
-      contentContainerStyle={[
-        styles.content,
-        { paddingBottom: layout.screen.paddingBottom + bottom },
-      ]}
-      onEndReachedThreshold={0.5}
-      onEndReached={onEndReached}
-      refreshControl={
-        <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
-      }
-    />
+    <View>
+      <PostTabs />
+      <FlatList
+        data={posts}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        style={{ paddingTop: layout.screen.paddingTop + top }}
+        contentContainerStyle={[
+          styles.content,
+          { paddingBottom: layout.screen.paddingBottom + bottom },
+        ]}
+        onEndReachedThreshold={0.5}
+        onEndReached={onEndReached}
+        refreshControl={
+          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+        }
+      />
+    </View>
   );
 });
 

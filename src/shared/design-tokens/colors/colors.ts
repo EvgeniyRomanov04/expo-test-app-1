@@ -20,7 +20,7 @@ export const colors = {
   },
 
   border: {
-    default: baseColors.gray100,
+    default: baseColors.gray800,
   },
 
   action: {
