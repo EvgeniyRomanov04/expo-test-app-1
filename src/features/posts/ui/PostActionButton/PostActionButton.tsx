@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { GestureResponderEvent, Pressable, StyleSheet } from "react-native";
 import { PostActionButtonProps } from "./types";
 import { typography } from "@/shared/theme/typography";
@@ -37,7 +37,7 @@ export const PostActionButton = ({
       {Icon && <Icon {...iconProps} />}
       {iconIsElement && icon}
       <AnimatedNumber
-        includeComma
+        includeComma={false}
         animateToNumber={Number(value)}
         containerStyle={styles.textContainer}
         fontStyle={[styles.text, typography.caption, textStyle]}

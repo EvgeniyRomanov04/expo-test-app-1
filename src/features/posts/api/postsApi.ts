@@ -1,6 +1,7 @@
 import { apiClient } from "@/shared/api/apiClient";
 import {
   PostDetailResponse,
+  PostLikeToggleResponse,
   PostsPequestParam,
   PostsResponse,
 } from "./posts.types";
@@ -23,5 +24,12 @@ export const postsApi = {
       AxiosResponse<PostDetailResponse>
     >(`/posts/${id}`);
     return data.data?.post;
+  },
+  likePost: async (id: string): Promise<PostLikeToggleResponse["data"]> => {
+    const { data } = await apiClient.post<
+      any,
+      AxiosResponse<PostLikeToggleResponse>
+    >(`/posts/${id}/like`);
+    return data.data;
   },
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PostActionButton } from "./PostActionButton";
 import { PressableStateCallbackType, StyleSheet } from "react-native";
 import { PostActionButtonProps } from "./types";
@@ -11,63 +11,66 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { PostActiveLikeIcon, PostLikeIcon } from "./icons";
+import websocket from "@/screens/PostDetailScreen/model/websocket";
+import postsStore from "../../model/postsStore";
+import { observer } from "mobx-react-lite";
 
-export const PostLikeActionButton = ({
-  disabled,
-  active: initActive,
-  value = "0",
-}: PostActionButtonProps) => {
-  const animatedScale = useSharedValue(1);
-  //После добавления апи на лайк, убрать состояние, если нет целей на "временное состояние"
-  const [active, setActive] = useState(initActive);
-  const disabledStylesValue = active ? disableActiveStyles : disabledStyles;
+export const PostLikeActionButton = observer(
+  ({ id, disabled }: PostActionButtonProps & { id: string }) => {
+    const post = postsStore.getPostById(id);
+    const active = post?.isLiked;
 
-  const press = () => {
-    impactAsync(ImpactFeedbackStyle.Light);
-    animatedScale.value = withTiming(1.2, undefined, (finished) => {
-      if (!finished) return;
-      animatedScale.value = withTiming(1);
-    });
-    setActive((prev) => !prev);
-  };
+    const animatedScale = useSharedValue(1);
 
-  const animatedIconStyles = useAnimatedStyle(() => ({
-    transform: [{ scale: animatedScale.value }],
-  }));
+    const disabledStylesValue = active ? disableActiveStyles : disabledStyles;
 
-  const createStyles = ({ pressed }: PressableStateCallbackType) => [
-    pressed && styles.pressed,
-    active && activeStyles[pressed ? "pressed" : "default"],
-    disabled && disabledStylesValue.container,
-  ];
+    const press = async () => {
+      impactAsync(ImpactFeedbackStyle.Light);
+      animatedScale.value = withTiming(1.2, undefined, (finished) => {
+        if (!finished) return;
+        animatedScale.value = withTiming(1);
+      });
+      postsStore.toogleLike(id);
+    };
 
-  return (
-    <PostActionButton
-      icon={
-        <Animated.View style={animatedIconStyles}>
-          {active ? <PostActiveLikeIcon /> : <PostLikeIcon />}
-        </Animated.View>
-      }
-      value={value}
-      onPress={press}
-      style={createStyles}
-      textStyle={[
-        active && activeStyles.defaultText,
-        disabled && disabledStylesValue.text,
-      ]}
-      disabled={disabled}
-      iconProps={
-        disabled
-          ? {
-              mainColor: active
-                ? colors.action.like.activeSubtle
-                : colors.icon.disabled,
-            }
-          : undefined
-      }
-    />
-  );
-};
+    const animatedIconStyles = useAnimatedStyle(() => ({
+      transform: [{ scale: animatedScale.value }],
+    }));
+
+    const createStyles = ({ pressed }: PressableStateCallbackType) => [
+      pressed && styles.pressed,
+      active && activeStyles[pressed ? "pressed" : "default"],
+      disabled && disabledStylesValue.container,
+    ];
+
+    return (
+      <PostActionButton
+        icon={
+          <Animated.View style={animatedIconStyles}>
+            {active ? <PostActiveLikeIcon /> : <PostLikeIcon />}
+          </Animated.View>
+        }
+        value={post?.likesCount}
+        onPress={press}
+        style={createStyles}
+        textStyle={[
+          active && activeStyles.defaultText,
+          disabled && disabledStylesValue.text,
+        ]}
+        disabled={disabled}
+        iconProps={
+          disabled
+            ? {
+                mainColor: active
+                  ? colors.action.like.activeSubtle
+                  : colors.icon.disabled,
+              }
+            : undefined
+        }
+      />
+    );
+  }
+);
 
 const disableActiveStyles = StyleSheet.create({
   container: {

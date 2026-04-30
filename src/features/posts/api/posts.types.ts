@@ -13,3 +13,7 @@ export type Post = NonNullable<Posts>[number];
 
 export type PostDetailResponse =
   paths["/posts/{id}"]["get"]["responses"]["200"]["content"]["application/json"];
+
+export type PostLikeToggleResponse = NonNullable<
+  paths["/posts/{id}/like"]["post"]["responses"]["200"]["content"]["application/json"]
+>;

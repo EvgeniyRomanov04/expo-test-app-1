@@ -10,11 +10,10 @@ import { RootParamList } from "@/app/navigation/root/types";
 
 export const PostCommentActionButton = ({
   id,
-  value = "0",
+  value = 0,
   disabled,
 }: PostActionButtonProps & { id: string }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
-  const target = postsStore.posts!.find((post) => post.id === id)!;
   return (
     <PostActionButton
       icon="PostCommentIcon"
@@ -33,7 +32,7 @@ export const PostCommentActionButton = ({
           navigation.setParams({ ...lastRoute, focus: true });
           return;
         }
-        navigation.navigate("PostDetail", target);
+        navigation.navigate("PostDetail", { id, focus: true });
       }}
     />
   );

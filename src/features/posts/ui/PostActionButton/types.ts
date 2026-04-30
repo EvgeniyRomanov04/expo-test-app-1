@@ -6,7 +6,7 @@ import React from "react";
 type PostIconsKeys = keyof typeof PostIcons;
 
 export interface PostActionButtonProps extends PressableProps {
-  value: string;
+  value?: number;
   active?: boolean;
   icon?: PostIconsKeys | React.JSX.Element;
   iconProps?: PostActionButtonIconProps;

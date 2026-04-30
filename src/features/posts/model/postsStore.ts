@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { postsApi } from "../api/postsApi";
 import { Posts, PostsPequestParam } from "../api/posts.types";
 import { TabTypes } from "../ui/PostTabs/types";
+import websocket from "@/screens/PostDetailScreen/model/websocket";
 
 class PostsStore {
   posts: Posts = [];
@@ -12,6 +13,10 @@ class PostsStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    websocket.emitter.addListener("like_updated", (event) => {
+      this.updateLike(event.postId, event.likesCount);
+    });
   }
 
   setTab(type: TabTypes) {
@@ -46,6 +51,31 @@ class PostsStore {
         this.error = "Failed to load posts";
       });
     }
+  }
+
+  async toogleLike(id: string) {
+    const post = this.getPostById(id);
+    if (!post) return;
+    post.likesCount = post.likesCount! + (post.isLiked ? -1 : 1);
+    post.isLiked = !post.isLiked;
+    const data = await postsApi.likePost(id);
+    runInAction(() => {
+      if (post && data) {
+        post.isLiked = data.isLiked;
+        post.likesCount = data.likesCount;
+      }
+    });
+    return data;
+  }
+
+  updateLike(id: string, count: number) {
+    const post = this.getPostById(id);
+    if (!post) return;
+    post.likesCount = count;
+  }
+
+  getPostById(id: string) {
+    return this.posts?.find((post) => post.id === id);
   }
 }
 

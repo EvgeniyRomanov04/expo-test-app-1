@@ -10,8 +10,8 @@ interface Props extends PostActionsData {
 export const PostActions = ({ id, liked, likeCount, commentCount }: Props) => {
   return (
     <View style={styles.container}>
-      <PostLikeActionButton active={liked} value={String(likeCount)} />
-      <PostCommentActionButton id={id} value={String(commentCount)} />
+      <PostLikeActionButton id={id} active={liked} value={likeCount} />
+      <PostCommentActionButton id={id} value={commentCount} />
     </View>
   );
 };

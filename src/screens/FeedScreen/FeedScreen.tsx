@@ -35,7 +35,9 @@ export const FeedScreen = observer(
     }
 
     const renderItem: ListRenderItem<PostType> = ({ item }) => (
-      <Pressable onPress={() => navigation.navigate("PostDetail", item)}>
+      <Pressable
+        onPress={() => navigation.navigate("PostDetail", { id: item.id! })}
+      >
         <Post post={item} />
       </Pressable>
     );
