@@ -13,5 +13,7 @@ export const commentStyles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 });

@@ -25,3 +25,7 @@ export type PostCommentsRequest = NonNullable<
 export type PostCommentsResponse = NonNullable<
   paths["/posts/{id}/comments"]["get"]["responses"]["200"]["content"]["application/json"]
 >;
+
+export type PostCommentCreateResponse = NonNullable<
+  paths["/posts/{id}/comments"]["post"]["responses"]["201"]["content"]["application/json"]
+>;

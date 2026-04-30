@@ -19,4 +19,5 @@ export const baseColors = {
   purple100: "#DFD0F5",
   purple400: "#6115CD",
   purple500: "#4E11A4",
+  purple700: "#3A0D7B",
 };

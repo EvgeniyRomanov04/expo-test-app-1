@@ -1,5 +1,6 @@
 import { apiClient } from "@/shared/api/apiClient";
 import {
+  PostCommentCreateResponse,
   PostCommentsRequest,
   PostCommentsResponse,
   PostDetailResponse,
@@ -8,6 +9,7 @@ import {
   PostsResponse,
 } from "./posts.types";
 import { AxiosResponse } from "axios";
+import { paths } from "@/shared/api/types";
 
 export const postsApi = {
   get: async (
@@ -34,6 +36,16 @@ export const postsApi = {
     >(`/posts/${id}/like`);
     return data.data;
   },
+  postComment: async (id: string, text: string) => {
+    const { data } = await apiClient.post<
+      any,
+      AxiosResponse<PostCommentCreateResponse>,
+      paths["/posts/{id}/comments"]["post"]["requestBody"]["content"]["application/json"]
+    >(`/posts/${id}/comments`, { text });
+
+    return data.data;
+  },
+
   getPostComments: async (
     id: string,
     cursor?: string | null
