@@ -11,7 +11,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { PostActiveLikeIcon, PostLikeIcon } from "./icons";
-import websocket from "@/screens/PostDetailScreen/model/websocket";
+import websocket from "@/features/detail/model/websocket";
 import postsStore from "../../model/postsStore";
 import { observer } from "mobx-react-lite";
 

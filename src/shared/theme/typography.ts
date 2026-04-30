@@ -45,4 +45,6 @@ export const typography = {
     },
     fontStyles.manrope_700bold,
   ],
+
+  small: [{ fontSize: 14, lineHeight: 20 }, fontStyles.manrope_500medium],
 } satisfies Record<string, StyleProp<TextStyle>>;

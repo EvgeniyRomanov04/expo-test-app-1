@@ -1,5 +1,7 @@
 import { apiClient } from "@/shared/api/apiClient";
 import {
+  PostCommentsRequest,
+  PostCommentsResponse,
   PostDetailResponse,
   PostLikeToggleResponse,
   PostsPequestParam,
@@ -30,6 +32,20 @@ export const postsApi = {
       any,
       AxiosResponse<PostLikeToggleResponse>
     >(`/posts/${id}/like`);
+    return data.data;
+  },
+  getPostComments: async (
+    id: string,
+    cursor?: string | null
+  ): Promise<PostCommentsResponse["data"]> => {
+    const params: PostCommentsRequest["query"] = {
+      cursor: cursor ?? undefined,
+    };
+    const { data } = await apiClient.get<
+      any,
+      AxiosResponse<PostCommentsResponse>
+    >(`/posts/${id}/comments`, { params });
+
     return data.data;
   },
 };

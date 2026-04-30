@@ -2,10 +2,8 @@ import { StyleSheet } from "react-native";
 import Skeleton from "react-native-reanimated-skeleton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ICustomViewStyle } from "react-native-reanimated-skeleton/lib/typescript/constants";
-import { colors } from "@/shared/design-tokens/colors";
 import { layout } from "@/shared/design-tokens/layout";
-import { radius } from "@/shared/design-tokens/radius";
-import { postCardStyles } from "../PostCard/styles";
+import { postCardStyles, postSkeletonStyles } from "../PostCard/styles";
 
 export const PostSkeleton = () => {
   const { top } = useSafeAreaInsets();
@@ -22,68 +20,28 @@ export const PostSkeleton = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.background.card,
-    marginTop: layout.screen.paddingTop,
-  },
-  headerIcon: {
-    height: 40,
-    width: 40,
-    ...postCardStyles.headerIcon,
-    backgroundColor: undefined,
-  },
-  headerTitle: {
-    width: 120,
-    height: 20,
-    marginLeft: layout.header.marginLeft,
-    borderRadius: radius.l,
-  },
-  imageContainer: {
-    aspectRatio: 1,
-    width: "100%",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-  },
-  descTitle: {
-    width: 164,
-    height: 26,
-    borderRadius: radius.xxl,
-    marginBottom: 8,
-  },
-  descText: {
-    width: "100%",
-    height: 20,
-    borderRadius: radius.xxl,
-    marginBottom: 16,
-  },
-  actionsContainer: { flexDirection: "row", columnGap: 8 },
-  actionButton: {
-    width: 64,
-    height: 36,
-    borderRadius: radius.xxl,
-  },
-  stub: {},
-});
-
 const PostSkeletonLayout: ICustomViewStyle = {
-  ...styles.container,
+  ...postSkeletonStyles.container,
   children: [
     {
       ...postCardStyles.header,
-      children: [styles.headerIcon, styles.headerTitle],
+      children: [postSkeletonStyles.headerIcon, postSkeletonStyles.headerTitle],
     },
-    { ...styles.imageContainer, children: [styles.image] },
+    {
+      ...postSkeletonStyles.imageContainer,
+      children: [postSkeletonStyles.image],
+    },
     {
       ...postCardStyles.footerContainer,
       children: [
-        styles.descTitle,
-        styles.descText,
+        postSkeletonStyles.descTitle,
+        postSkeletonStyles.descText,
         {
-          ...styles.actionsContainer,
-          children: [styles.actionButton, styles.actionButton],
+          ...postSkeletonStyles.actionsContainer,
+          children: [
+            postSkeletonStyles.actionButton,
+            postSkeletonStyles.actionButton,
+          ],
         },
       ],
     },

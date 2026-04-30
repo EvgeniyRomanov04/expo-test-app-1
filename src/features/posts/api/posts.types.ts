@@ -17,3 +17,11 @@ export type PostDetailResponse =
 export type PostLikeToggleResponse = NonNullable<
   paths["/posts/{id}/like"]["post"]["responses"]["200"]["content"]["application/json"]
 >;
+
+export type PostCommentsRequest = NonNullable<
+  paths["/posts/{id}/comments"]["get"]["parameters"]
+>;
+
+export type PostCommentsResponse = NonNullable<
+  paths["/posts/{id}/comments"]["get"]["responses"]["200"]["content"]["application/json"]
+>;

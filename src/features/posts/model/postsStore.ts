@@ -2,7 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { postsApi } from "../api/postsApi";
 import { Posts, PostsPequestParam } from "../api/posts.types";
 import { TabTypes } from "../ui/PostTabs/types";
-import websocket from "@/screens/PostDetailScreen/model/websocket";
+import websocket from "@/features/detail/model/websocket";
 
 class PostsStore {
   posts: Posts = [];
