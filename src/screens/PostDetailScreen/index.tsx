@@ -47,7 +47,6 @@ export const PostDetailScreen = ({
     if (!data || isFetching) return;
     const lastPage = data.pages[data.pages.length - 1];
     if (!lastPage?.hasMore) return;
-    console.log("handle");
     fetchNextPage();
   };
 
